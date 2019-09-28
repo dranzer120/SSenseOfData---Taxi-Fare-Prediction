@@ -4,7 +4,7 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -18,11 +18,19 @@
   <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+  <!-- mapbox api -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    
   <!-- Custom styles for this header -->
   <link href="css/header.css" rel="stylesheet">
   
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
+
+    <!-- Custom styles for the map -->
+  <style>#map { position:absolute; top:0; bottom:0; width:100%; }</style>
+
 
   
 
@@ -31,10 +39,39 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-light bg-light static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">SSense Of Data</a>
-      <a class="btn btn-primary" href="#">Sign In</a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">SSense Of Data</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li> -->
+      </ul>
+      <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
     </div>
   </nav>
 
@@ -91,11 +128,12 @@
 
   <!-- Image Showcases -->
   <section class="showcase">
+
     <div class="container-fluid p-0">
       <div class="row no-gutters">
-
         <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-1.jpg');"></div>
         <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+          <div id="map"></div>
           <h2>Fully Responsive Design</h2>
           <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
         </div>
@@ -120,7 +158,7 @@
   <!-- Testimonials -->
   <section class="testimonials text-center bg-light">
     <div class="container">
-      <h2 class="mb-5">Team SSense of <datagrid></datagrid></h2>
+      <h2 class="mb-5">Team SSense of Data <datagrid></datagrid></h2>
       <div class="row">
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
@@ -221,6 +259,125 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhdW5jbGFya2U0MyIsImEiOiJjanl2czd0NDYwc3puM2NvemRneWtjM3ZhIn0.T9uSLGwVdAurGacKeQquVg';
+/* global Promise */
+
+// Use a minimal variant of the Mapbox Dark style, with certain features removed.
+var map = new mapboxgl.Map({
+    style: 'mapbox://styles/examples/cj68bstx01a3r2rndlud0pwpv',
+    center: {
+        lng: -74.00649562332922,
+        lat: 40.70811328605049
+    },
+    zoom: 15,
+    pitch: 55,
+    container: 'map',
+    antialias: true
+});
+
+map.addControl(new mapboxgl.FullscreenControl());
+
+map.on('load', function() {
+    var bins = 16;
+    var maxHeight = 200;
+    var binWidth = maxHeight / bins;
+
+    // Divide the buildings into 16 bins based on their true height, using a layer filter.
+    for (var i = 0; i < bins; i++) {
+        map.addLayer({
+            'id': '3d-buildings-' + i,
+            'source': 'composite',
+            'source-layer': 'building',
+            'filter': ['all', ['==', 'extrude', 'true'], ['>', 'height', i * binWidth], ['<=', 'height', (i + 1) * binWidth]],
+            'type': 'fill-extrusion',
+            'minzoom': 15,
+            'paint': {
+                'fill-extrusion-color': '#aaa',
+                'fill-extrusion-height-transition': {
+                    duration: 0,
+                    delay: 0
+                },
+                'fill-extrusion-opacity': .6
+            }
+        });
+    }
+
+    // Older browsers might not implement mediaDevices at all, so we set an empty object first
+    if (navigator.mediaDevices === undefined) {
+        navigator.mediaDevices = {};
+    }
+
+    // Some browsers partially implement mediaDevices. We can't just assign an object
+    // with getUserMedia as it would overwrite existing properties.
+    // Here, we will just add the getUserMedia property if it's missing.
+    if (navigator.mediaDevices.getUserMedia === undefined) {
+        navigator.mediaDevices.getUserMedia = function (constraints) {
+
+            // First get ahold of the legacy getUserMedia, if present
+            var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+            // Some browsers just don't implement it - return a rejected promise with an error
+            // to keep a consistent interface
+            if (!getUserMedia) {
+                return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+            }
+
+            // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
+            return new Promise(function (resolve, reject) {
+                getUserMedia.call(navigator, constraints, resolve, reject);
+            });
+        };
+    }
+
+    navigator.mediaDevices.getUserMedia({audio: true})
+        .then(function (stream) {
+            // Set up a Web Audio AudioContext and AnalyzerNode, configured to return the
+            // same number of bins of audio frequency data.
+            var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+            var analyser = audioCtx.createAnalyser();
+            analyser.minDecibels = -90;
+            analyser.maxDecibels = -10;
+            analyser.smoothingTimeConstant = 0.85;
+
+            var source = audioCtx.createMediaStreamSource(stream);
+            source.connect(analyser);
+
+            analyser.fftSize = bins * 2;
+
+            var dataArray = new Uint8Array(bins);
+
+            function draw(now) {
+                analyser.getByteFrequencyData(dataArray);
+
+                // Use that data to drive updates to the fill-extrusion-height property.
+                var avg = 0;
+                for (var i = 0; i < bins; i++) {
+                    avg += dataArray[i];
+                    map.setPaintProperty('3d-buildings-' + i, 'fill-extrusion-height', 10 + 4 * i + dataArray[i]);
+                }
+                avg /= bins;
+
+                // Animate the map bearing and light color over time, and make the light more
+                // intense when the audio is louder.
+                map.setBearing(now / 500);
+                map.setLight({
+                    color: "hsl(" + now / 100 % 360 + "," + Math.min(50 + avg / 4, 100) + "%,50%)",
+                    intensity: Math.min(1, avg / 256 * 10)
+                });
+
+                requestAnimationFrame(draw);
+            }
+
+            requestAnimationFrame(draw);
+        })
+        .catch(function (err) {
+            console.log('The following gUM error occured: ' + err);
+        });
+});
+</script>
 
 </body>
 
