@@ -88,7 +88,7 @@
       <div class="d-flex h-100 text-center align-items-center">
         <div class="w-100 text-white">
           <h1 class="display-2">The NYC Yellow Cab</h1>
-          <p class="display-4" >What exactly are you paying for</p>
+          <p class="display-4" >How much would be your next taxi trip?</p>
         </div>
       </div>
     </div>
@@ -99,7 +99,7 @@
   <section class="features-icons bg-light text-center">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
               <div class="features-icons-icon d-flex">
                 <i class=" m-auto text-primary"></i>
@@ -109,22 +109,15 @@
                 </p>
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
               <div class="features-icons-icon d-flex">
                 <i class=" m-auto text-primary"></i>
               </div>
-              <h3>Problem we are solving</h3>
-              <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-              <div class="features-icons-icon d-flex">
-                <i class=" m-auto text-primary"></i>
-              </div>
-              <h3>Easy to Use</h3>
-              <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+              <h3>Some of the Challenges</h3>
+              <ul class="list-unstyled lead mb-0">
+                <li>- Large Dataset (55M records)</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -135,12 +128,6 @@
   <!-- Image Showcases -->
   <section class="showcase" id="the_data">
       <div class="container1">
-          <h3 class="my-3">Project Description</h3>
-          <img src="img/Screen Shot 2019-09-29 at 8.29.55 PM.png" style="max-width:50%;cursor:pointer"
-        onclick="onClick(this)" class="modal-hover-opacity">
-        <div class="col-lg-6">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-        </div>
         
       <div id="modal01" class="modal" onclick="this.style.display=''">
         <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -152,24 +139,39 @@
       <div class="container-fluid p-0">
           <div class="row no-gutters">
     
-            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/Screen Shot 2019-09-29 at 8.30.33 PM.png');"></div>
+            <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                <img src="img/Screen Shot 2019-09-30 at 1.26.31 PM.png" style="max-width:100%;cursor:pointer"
+                onclick="onClick(this)" class="modal-hover-opacity">
+            </div>
             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Fully Responsive Design</h2>
-              <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+              <h2>Reading in 55 million data</h2>
+              <p class="lead mb-0">
+                We tried loading the data the regular way, and as expected, it took forever to even just reading in the data to jupyter notebook.
+                (Jupyter notebook ran for about an hour and still was loading [*]...)
+                Then we came across a method to dissect the data into chunks of 1,000,000. As a result, we are able to load the data in less than 20 mins 
+              </p>
             </div>
           </div>
           <div class="row no-gutters">
-            <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/Screen Shot 2019-09-29 at 8.30.19 PM.png');"></div>
+            <div class="col-lg-6 text-white showcase-img">
+                <img src="img/Screen Shot 2019-09-30 at 1.45.08 PM.png" style="max-width:100%;cursor:pointer"
+                onclick="onClick(this)" class="modal-content">
+            </div>
             <div class="col-lg-6 my-auto showcase-text">
-              <h2>Updated For Bootstrap 4</h2>
-              <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
+              <h2>Distribution of the Fare</h2>
+              <p class="lead mb-0">Our Majority of the data falls between $5 and $10</p>
             </div>
           </div>
           <div class="row no-gutters">
-            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/Screen Shot 2019-09-29 at 8.29.55 PM.png');"></div>
-            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Easy to Use &amp; Customize</h2>
-              <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
+              <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-29 at 8.28.59 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-hover-opacity">
+              </div>
+              <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Does the number of passengers affect the fare? </h2>
+              <p class="lead mb-0">Based on the scatter plot, it seems like as passenger increases, the fare of the trip decreases.
+                It might be because people are willing to take more expensive trips by themselves
+              </p>
             </div>
           </div>
         </div>
@@ -178,30 +180,141 @@
       <!-- Image Showcases 2 -->
       <section class="showcase">
         <div class="container-fluid p-0">
+
+          <div class="row no-gutters">
+              <div class="col-lg-6 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-29 at 8.33.15 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-content">
+              </div>              <div class="col-lg-6 my-auto showcase-text">
+                <h2>Does the hour of pickup affect the fare?</h2>
+                <p class="lead mb-0">
+                  It does not seem like the hour of the day have a significant impact on the fare.
+                </p>
+              </div>
+          </div>
+
+          <div class="row no-gutters">
+              <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-29 at 8.33.33 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-hover-opacity">
+              </div>            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Does the hour of pickup affect the fare? (Cont.)</h2>
+              <p class="lead mb-0">
+                  However, frequency is the lowest at 5am and hightet at 8pm
+                </p>
+            </div>
+          </div>
+
+          <div class="row no-gutters">
+              <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg');"></div>
+              <div class="col-lg-6 my-auto showcase-text">
+                <h2>Does the day of the week affect the fare?</h2>
+                <p class="lead mb-0"></p>
+              </div>
+          </div>
+
+        </div>
+      </section>
+
+        <!-- Image Showcases -->
+  <section class="showcase" id="the_data">
+      <div class="container1">
+
+      <div class="container-fluid p-0">
           <div class="row no-gutters">
     
-            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-1.jpg');"></div>
+            <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                <img src="img/Screen Shot 2019-09-29 at 8.29.55 PM.png" style="max-width:100%;cursor:pointer"
+                onclick="onClick(this)" class="modal-hover-opacity">
+            </div>
             <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Fully Responsive Design</h2>
-              <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+              <h2>Does the distance travelled affect the fare?</h2>
+              <p class="lead mb-0">
+                I mean of course! This will definitely affect the fare. As we dig deeper, we will first need to clean up the lat/long a bit.
+                To capture all the data within NYC, we defined a Boundary Box to capture all data points within NYC and elimiated all the outliers.
+              </p>
+              <p class="lead mb-0">
+                  ** Area to improve: We can try to elminate the data points that lies in the water **
+              </p>
             </div>
           </div>
           <div class="row no-gutters">
-            <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg');"></div>
+            <div class="col-lg-6 text-white showcase-img">
+                <img src="img/Screen Shot 2019-09-29 at 8.30.33 PM.png" style="max-width:100%;cursor:pointer"
+                onclick="onClick(this)" class="modal-content">
+            </div>
             <div class="col-lg-6 my-auto showcase-text">
-              <h2>Updated For Bootstrap 4</h2>
-              <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
+              <h2>Another map view of the data</h2>
+              <p class="lead mb-0">Zoom in of Manhattan</p>
             </div>
           </div>
           <div class="row no-gutters">
-            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-3.jpg');"></div>
-            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-              <h2>Easy to Use &amp; Customize</h2>
-              <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
+              <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-29 at 8.22.43 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-hover-opacity">
+              </div>
+              <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Comparison between the 5 Boroughs (Fare) </h2>
+              <p class="lead mb-0">
+                Based on the lat/lon of the 5 boroughs, we splitted and sorted the data into their corresponding borough.
+              </p>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- Image Showcases 2 -->
+      <section class="showcase">
+          <div class="container-fluid p-0">
+  
+            <div class="row no-gutters">
+                <div class="col-lg-6 text-white showcase-img">
+                    <img src="img/Screen Shot 2019-09-29 at 8.23.55 PM.png" style="max-width:100%;cursor:pointer"
+                    onclick="onClick(this)" class="modal-content">
+                </div>              <div class="col-lg-6 my-auto showcase-text">
+                  <h2>Comparison between the 5 Boroughs (Trip Distance) </h2>
+                  <p class="lead mb-0">
+                    It does not seem like the hour of the day have a significant impact on the fare.
+                  </p>
+                </div>
+            </div>
+  
+            <div class="row no-gutters">
+                <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                    <img src="img/Screen Shot 2019-09-29 at 8.36.26 PM.png" style="max-width:100%;cursor:pointer"
+                    onclick="onClick(this)" class="modal-hover-opacity">
+                </div>            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Modeling</h2>
+                <p class="lead mb-0">As we explored through different models</p>
+                <br>
+                <h5>Linear Regressor:</h5>
+                <p class="lead mb-0">- RMSE = 5.17</p>
+                <p class="lead mb-0">- Score = .7136</p>
+                <br>
+                <h5>Random Forest Regressor:</h5>
+                <p class="lead mb-0">- RMSE = 4.47</p>
+                <p class="lead mb-0">- Score = .7858</p>
+                <br>
+                <h5>Grid Search CV:</h5>
+                <p class="lead mb-0">- RMSE = 4.25</p>
+                <p class="lead mb-0">- Score = .8056</p>
+
+              </div>
+            </div>
+
+            <div class="row no-gutters">
+                <div class="col-lg-6 text-white showcase-img">
+                    <img src="img/Screen Shot 2019-09-30 at 3.13.39 PM.png" style="max-width:100%;cursor:pointer"
+                    onclick="onClick(this)" class="modal-content">
+                </div>              <div class="col-lg-6 my-auto showcase-text">
+                  <h1>One More Thing... </h1>
+                </div>
+            </div>
+
+  
+          </div>
+        </section>
+  
       
   <!-- Testimonials -->
   <section class="testimonials text-center bg-light">
@@ -212,21 +325,21 @@
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="img/gargic.JPG" alt="">
             <h5>Gargic Chattopadhyaya</h5>
-            <p class="font-weight-light mb-0">Lady of the dance</p>
+            <p class="font-weight-light mb-0"></p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="img/jason.jpg" alt="">
             <h5>Jason Tong</h5>
-            <p class="font-weight-light mb-0">Party Animal</p>
+            <p class="font-weight-light mb-0"></p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="img/Shaun.jpg" alt="">
             <h5>Shaun Clarke</h5>
-            <p class="font-weight-light mb-0">Hammer Time</p>
+            <p class="font-weight-light mb-0"></p>
           </div>
         </div>
       </div>
