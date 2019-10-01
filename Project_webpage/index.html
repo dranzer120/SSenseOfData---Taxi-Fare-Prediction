@@ -249,6 +249,16 @@
             <div class="col-lg-6 my-auto showcase-text">
               <h2>Another map view of the data</h2>
               <p class="lead mb-0">Zoom in of Manhattan</p>
+              <br>
+              <p>haversine(θ) = sin²(θ/2)</p>
+              <br>
+              <p>Eventually, the formual boils down to the following where φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km) to include latitude and longitude coordinates (A and B in this case).</p>
+              <br>
+              <p>a = sin²((φB - φA)/2) + cos φA . cos φB . sin²((λB - λA)/2)</p>  
+              <p>c = 2 * atan2( √a, √(1−a) )</p>    
+              <p>d = R ⋅ c</p>    
+              <p>d = Haversine distance</p>    
+
             </div>
           </div>
           <div class="row no-gutters">
