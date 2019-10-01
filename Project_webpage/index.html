@@ -4,11 +4,11 @@
 <head>
 
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Landing Page - Start Bootstrap Theme</title>
+  <title>SSense of Data</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -18,11 +18,19 @@
   <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+  <!-- mapbox api -->
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.0/mapbox-gl.css' rel='stylesheet' />
+    
   <!-- Custom styles for this header -->
   <link href="css/header.css" rel="stylesheet">
   
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
+
+    <!-- Custom styles for the map -->
+  <style>#map { position:absolute; top:0; bottom:0; width:100%; }</style>
+
 
   
 
@@ -31,10 +39,42 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-light bg-light static-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">SSense Of Data</a>
-      <a class="btn btn-primary" href="#">Sign In</a>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">SSense Of Data</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="http://127.0.0.1:5501/Project_webpage/index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#mission_objectives">Mission Objectives</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#the_data">The Data</a>
+          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Visualizations
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">NYC Map</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li> -->
+      </ul>
+      <!-- <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form> -->
     </div>
   </nav>
 
@@ -47,103 +87,275 @@
     <div class="container h-100">
       <div class="d-flex h-100 text-center align-items-center">
         <div class="w-100 text-white">
-          <h1 class="display-3">The NYC Yellow Cab</h1>
-          <p class="lead mb-0">What exactly are you paying for</p>
+          <h1 class="display-2">The NYC Yellow Cab</h1>
+          <p class="display-4" >How much would be your next taxi trip?</p>
         </div>
       </div>
     </div>
+    <div id="map"></div>
   </header>
 
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-screen-desktop m-auto text-primary"></i>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <div class="features-icons-icon d-flex">
+                <i class=" m-auto text-primary"></i>
+              </div>
+              <h3>Problem Statement</h3>
+              <p class="lead mb-0">Can we predict a rider’s taxi fare based on the provided data?
+                </p>
             </div>
-            <h3>Fully Responsive</h3>
-            <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
           </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-layers m-auto text-primary"></i>
+          <div class="col-lg-6">
+            <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+              <div class="features-icons-icon d-flex">
+                <i class=" m-auto text-primary"></i>
+              </div>
+              <h3>Some of the Challenges</h3>
+              <ul class="list-unstyled lead mb-0">
+                <li>- Large Dataset (55M records)</li>
+              </ul>
             </div>
-            <h3>Bootstrap 4 Ready</h3>
-            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-            <div class="features-icons-icon d-flex">
-              <i class="icon-check m-auto text-primary"></i>
-            </div>
-            <h3>Easy to Use</h3>
-            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  
 
   <!-- Image Showcases -->
-  <section class="showcase">
-    <div class="container-fluid p-0">
-      <div class="row no-gutters">
+  <section class="showcase" id="the_data">
+      <div class="container1">
+        
+      <div id="modal01" class="modal" onclick="this.style.display=''">
+        <span class="close">&times;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <div class="modal-content">
+          <img id="img01" style="max-width:100%">
+        </div>
+      </div>
 
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-1.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Fully Responsive Design</h2>
-          <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
+      <div class="container-fluid p-0">
+          <div class="row no-gutters">
+    
+            <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                <img src="img/Screen Shot 2019-09-30 at 1.26.31 PM.png" style="max-width:100%;cursor:pointer"
+                onclick="onClick(this)" class="modal-hover-opacity">
+            </div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Reading in 55 million data</h2>
+              <p class="lead mb-0">
+                We tried loading the data the regular way, and as expected, it took forever to even just reading in the data to jupyter notebook.
+                (Jupyter notebook ran for about an hour and still was loading [*]...)
+                Then we came across a method to dissect the data into chunks of 1,000,000. As a result, we are able to load the data in less than 20 mins 
+              </p>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-lg-6 text-white showcase-img">
+                <img src="img/Screen Shot 2019-09-30 at 1.45.08 PM.png" style="max-width:100%;cursor:pointer"
+                onclick="onClick(this)" class="modal-content">
+            </div>
+            <div class="col-lg-6 my-auto showcase-text">
+              <h2>Distribution of the Fare</h2>
+              <p class="lead mb-0">Our Majority of the data falls between $5 and $10</p>
+            </div>
+          </div>
+          <div class="row no-gutters">
+              <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-29 at 8.28.59 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-hover-opacity">
+              </div>
+              <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Does the number of passengers affect the fare? </h2>
+              <p class="lead mb-0">Based on the scatter plot, it seems like as passenger increases, the fare of the trip decreases.
+                It might be because people are willing to take more expensive trips by themselves
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('img/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2>Updated For Bootstrap 4</h2>
-          <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('img/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Easy to Use &amp; Customize</h2>
-          <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    
+      <!-- Image Showcases 2 -->
+      <section class="showcase">
+        <div class="container-fluid p-0">
 
+          <div class="row no-gutters">
+              <div class="col-lg-6 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-29 at 8.33.15 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-content">
+              </div>              
+              <div class="col-lg-6 my-auto showcase-text">
+                <h2>Does the hour of pickup affect the fare?</h2>
+                <p class="lead mb-0">
+                  It does not seem like the hour of the day have a significant impact on the fare.
+                </p>
+              </div>
+          </div>
+
+          <div class="row no-gutters">
+              <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-29 at 8.33.33 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-hover-opacity">
+              </div>            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Does the hour of pickup affect the fare? (Cont.)</h2>
+              <p class="lead mb-0">
+                  However, frequency is the lowest at 5am and hightet at 8pm
+                </p>
+            </div>
+          </div>
+
+          <div class="row no-gutters">
+              <div class="col-lg-6 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-30 at 5.14.50 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-content">
+              </div>                <div class="col-lg-6 my-auto showcase-text">
+                <h2>Does the day of the week affect the fare?</h2>
+                <p class="lead mb-0"></p>
+              </div>
+          </div>
+
+        </div>
+      </section>
+
+        <!-- Image Showcases -->
+  <section class="showcase" id="the_data">
+      <div class="container1">
+
+      <div class="container-fluid p-0">
+          <div class="row no-gutters">
+    
+            <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                <img src="img/Screen Shot 2019-09-29 at 8.29.55 PM.png" style="max-width:100%;cursor:pointer"
+                onclick="onClick(this)" class="modal-hover-opacity">
+            </div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Does the distance travelled affect the fare?</h2>
+              <p class="lead mb-0">
+                I mean of course! This will definitely affect the fare. As we dig deeper, we will first need to clean up the lat/long a bit.
+                To capture all the data within NYC, we defined a Boundary Box to capture all data points within NYC and elimiated all the outliers.
+              </p>
+              <p class="lead mb-0">
+                  ** Area to improve: We can try to elminate the data points that lies in the water **
+              </p>
+            </div>
+          </div>
+          <div class="row no-gutters">
+            <div class="col-lg-6 text-white showcase-img">
+                <img src="img/Screen Shot 2019-09-29 at 8.30.33 PM.png" style="max-width:100%;cursor:pointer"
+                onclick="onClick(this)" class="modal-content">
+            </div>
+            <div class="col-lg-6 my-auto showcase-text">
+              <h2>Another map view of the data</h2>
+              <p class="lead mb-0">Zoom in of Manhattan</p>
+              <br>
+              <p>haversine(θ) = sin²(θ/2)</p>
+              <br>
+              <p>Eventually, the formual boils down to the following where φ is latitude, λ is longitude, R is earth’s radius (mean radius = 6,371km) to include latitude and longitude coordinates (A and B in this case).</p>
+              <br>
+              <p>a = sin²((φB - φA)/2) + cos φA . cos φB . sin²((λB - λA)/2)</p>  
+              <p>c = 2 * atan2( √a, √(1−a) )</p>    
+              <p>d = R ⋅ c</p>    
+              <p>d = Haversine distance</p>    
+
+            </div>
+          </div>
+          <div class="row no-gutters">
+              <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                  <img src="img/Screen Shot 2019-09-29 at 8.22.43 PM.png" style="max-width:100%;cursor:pointer"
+                  onclick="onClick(this)" class="modal-hover-opacity">
+              </div>
+              <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+              <h2>Comparison between the 5 Boroughs (Fare) </h2>
+              <p class="lead mb-0">
+                Based on the lat/lon of the 5 boroughs, we splitted and sorted the data into their corresponding borough.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Image Showcases 2 -->
+      <section class="showcase">
+          <div class="container-fluid p-0">
+  
+            <div class="row no-gutters">
+                <div class="col-lg-6 text-white showcase-img">
+                    <img src="img/Screen Shot 2019-09-29 at 8.23.55 PM.png" style="max-width:100%;cursor:pointer"
+                    onclick="onClick(this)" class="modal-content">
+                </div>              <div class="col-lg-6 my-auto showcase-text">
+                  <h2>Comparison between the 5 Boroughs (Trip Distance) </h2>
+                  <p class="lead mb-0">
+                  </p>
+                </div>
+            </div>
+  
+            <div class="row no-gutters">
+                <div class="col-lg-6 order-lg-2 text-white showcase-img">
+                    <img src="img/Screen Shot 2019-09-29 at 8.36.26 PM.png" style="max-width:100%;cursor:pointer"
+                    onclick="onClick(this)" class="modal-hover-opacity">
+                </div>            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Modeling</h2>
+                <p class="lead mb-0">As we explored through different models</p>
+                <br>
+                <h5>Linear Regressor:</h5>
+                <p class="lead mb-0">- RMSE = 5.17</p>
+                <p class="lead mb-0">- Score = .7136</p>
+                <br>
+                <h5>Random Forest Regressor:</h5>
+                <p class="lead mb-0">- RMSE = 4.47</p>
+                <p class="lead mb-0">- Score = .7858</p>
+                <br>
+                <h5>Grid Search CV:</h5>
+                <p class="lead mb-0">- RMSE = 4.25</p>
+                <p class="lead mb-0">- Score = .8056</p>
+
+              </div>
+            </div>
+
+            <div class="row no-gutters">
+                <div class="col-lg-6 text-white showcase-img">
+                    <img src="img/Screen Shot 2019-09-30 at 3.13.39 PM.png" style="max-width:100%;cursor:pointer"
+                    onclick="onClick(this)" class="modal-content">
+                </div>              <div class="col-lg-6 my-auto showcase-text">
+                  <h1>One More Thing... </h1>
+                </div>
+            </div>
+
+  
+          </div>
+        </section>
+  
+      
   <!-- Testimonials -->
   <section class="testimonials text-center bg-light">
     <div class="container">
-      <h2 class="mb-5">Team SSense of <datagrid></datagrid></h2>
+      <h2 class="mb-5">Team SSense of Data <datagrid></datagrid></h2>
       <div class="row">
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="img/gargic.JPG" alt="">
             <h5>Gargic Chattopadhyaya</h5>
-            <p class="font-weight-light mb-0">Lady of the dance</p>
+            <p class="font-weight-light mb-0"></p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="img/jason.jpg" alt="">
             <h5>Jason Tong</h5>
-            <p class="font-weight-light mb-0">Party Animal</p>
+            <p class="font-weight-light mb-0"></p>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" src="img/Shaun.jpg" alt="">
             <h5>Shaun Clarke</h5>
-            <p class="font-weight-light mb-0">Hammer Time</p>
+            <p class="font-weight-light mb-0"></p>
           </div>
         </div>
       </div>
+      
     </div>
   </section>
 
@@ -193,7 +405,7 @@
               <a href="#">Privacy Policy</a>
             </li>
           </ul>
-          <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; SSense of Data. All Rights Reserved.</p>
         </div>
         <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
           <ul class="list-inline mb-0">
@@ -221,7 +433,8 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="js/mapster.js"></script>
+  <script src="js/modal.js"></script>
 </body>
 
 </html>
